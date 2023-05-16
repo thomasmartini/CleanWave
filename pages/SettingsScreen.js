@@ -2,7 +2,7 @@
 // https://aboutreact.com/react-native-bottom-navigation/
 
 import * as React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ProfileScreen = () => {
   return (
@@ -20,11 +20,40 @@ const ProfileScreen = () => {
               textAlign: 'center',
               marginBottom: 16
             }}>
-            You are on Settings Screen
+            Welkom op de Settings page
           </Text>
+          <TouchableOpacity  style={styles.button}>
+            <Text>Notificaties</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity  style={styles.button}>
+            <Text>Beveiliging</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity  style={styles.button}>
+            <Text>Privacy</Text>
+          </TouchableOpacity>
+
+          
+          <TouchableOpacity  style={styles.button}>
+            <Text>Over ons</Text>
+          </TouchableOpacity>
+
         </View>
       </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: 300,
+    marginTop: 16,
+    
+  },
+});
+
 export default ProfileScreen;
