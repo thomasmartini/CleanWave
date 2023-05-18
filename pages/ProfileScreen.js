@@ -51,10 +51,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        padding: 20,
+        padding: 0,
+        paddingRight: 20,
+        paddingLeft: 20
     },
     coverImage: {
-        height: 200,
+        height: 220,
         position: 'absolute',
         top: 0,
         left: 0,
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginTop: 10,
+        paddingBottom: 0,
         color: 'white'
     },
     rank: {
