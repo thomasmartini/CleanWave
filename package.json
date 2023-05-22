@@ -1,3 +1,4 @@
+
 {
   "name": "cleanwave",
   "version": "1.0.0",
@@ -25,9 +26,11 @@
     "react-native-screens": "~3.15.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7"
+    "firebase": "^9.22.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
   "private": true
+
 }

@@ -15,6 +15,7 @@ import DetailsScreen from './pages/DetailsScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import MapScreen from './pages/MapScreen';
+import LoginScreen from './pages/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,12 +26,13 @@ function HomeStack() {
         initialRouteName="Home"
         screenOptions={{headerShown: false}}
         >
-        <Stack.Screen
+
+          <Stack.Screen
           name="Home"
           component={HomeScreen} />
-        <Stack.Screen
+          <Stack.Screen
           name="Details"
-          component={DetailsScreen} />
+          component={DetailsScreen} /> 
       </Stack.Navigator>
   );
 }
@@ -52,6 +54,7 @@ function ProfileStack() {
     <Stack.Navigator
       initialRouteName="Profile"
       screenOptions={{headerShown: false}}>
+      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
       <Stack.Screen
         name="Profile"
         component={ProfileScreen} />
