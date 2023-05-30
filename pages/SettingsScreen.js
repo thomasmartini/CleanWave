@@ -4,6 +4,7 @@
 import * as React from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 
+
 const ProfileScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -14,14 +15,17 @@ const ProfileScreen = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+
           <Text
             style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
+              fontSize: 15,
+              fontWeight: 'bold',
+              textAlign: 'left',
+              marginBottom: 16,
             }}>
-            Welkom op de Settings page
+            Algemeen
           </Text>
+
           <TouchableOpacity  style={styles.button}>
             <Text>Notificaties</Text>
           </TouchableOpacity>
@@ -34,9 +38,23 @@ const ProfileScreen = () => {
             <Text>Privacy</Text>
           </TouchableOpacity>
 
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: 'bold',
+              textAlign: 'left',
+              marginBottom: 16,
+              
+            }}>
+            Overig
+          </Text>
           
           <TouchableOpacity  style={styles.button}>
             <Text>Over ons</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity  style={styles.button}>
+            <Text>Privacy beleid</Text>
           </TouchableOpacity>
 
         </View>
