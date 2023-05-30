@@ -7,16 +7,17 @@ import UploadImage from './uploadImage';
 const backgroundPicture = require('./Images/backgroundImage.png');
 const ProfileScreen = () => {
     const navigation = useNavigation()
-    const handleSignOut = () => {
-        auth
-          .signOut()
-          .then(() => {
-            navigation.replace("Login")
-          })
-          .catch(error => alert(error.message))
-      }
+
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        navigation.replace("Login")
+      })
+      .catch(error => alert(error.message))
+  }
     return (
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <ScrollView style={styles.container}>
             <Image
                 // afbeelding moet 900x400 zijn
                 source={backgroundPicture}
@@ -51,11 +52,11 @@ const ProfileScreen = () => {
                     <Text style={styles.infoValue}>5/5 voltooid</Text>
                 </View>
                 <TouchableOpacity
-        onPress={handleSignOut}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Sign out</Text>
-      </TouchableOpacity>
+                    onPress={handleSignOut}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>Sign out</Text>
+                 </TouchableOpacity>
             </View>
         </ScrollView>
     );
