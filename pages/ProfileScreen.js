@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
 import { auth } from '../database/firebase'
+import UploadImage from './uploadImage';
 
-
-const HomeScreen = () => {
-  const navigation = useNavigation()
+const backgroundPicture = require('./Images/backgroundImage.png');
+const ProfileScreen = () => {
+    const navigation = useNavigation()
 
   const handleSignOut = () => {
     auth
@@ -15,51 +16,8 @@ const HomeScreen = () => {
       })
       .catch(error => alert(error.message))
   }
-
-  return (
-    <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity
-        onPress={handleSignOut}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Sign out</Text>
-      </TouchableOpacity>
-    </View>
-  )
-}
-
-export default HomeScreen
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-})
-=======
-import * as React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import UploadImage from './uploadImage';
-
-const backgroundPicture = require('./Images/backgroundImage.png');
-const ProfileScreen = () => {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Image
                 // afbeelding moet 900x400 zijn
                 source={backgroundPicture}
@@ -73,7 +31,7 @@ const ProfileScreen = () => {
                 <Text style={[styles.rank, styles.textWithShadow]}>Rang nummer #3</Text>
                 <View style={styles.infoContainer}>
                     <Text style={styles.infoLabel}>Email:</Text>
-                    <Text style={styles.infoValue}>student@hr.nl</Text>
+                    <Text style={styles.infoValue}>{auth.currentUser?.email}</Text>
                 </View>
                 <View style={styles.infoContainer}>
                     <Text style={styles.infoLabel}>Location:</Text>
@@ -93,8 +51,14 @@ const ProfileScreen = () => {
                     <Text style={styles.infoLabel}>Daily Challenges:</Text>
                     <Text style={styles.infoValue}>5/5 voltooid</Text>
                 </View>
+                <TouchableOpacity
+                    onPress={handleSignOut}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>Sign out</Text>
+                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
@@ -110,7 +74,7 @@ const styles = StyleSheet.create({
         height: 220,
         position: 'absolute',
         top: 0,
-        left: 0,
+        left: -20,
         right: 0,
     },
     avatarContainer: {
@@ -149,6 +113,18 @@ const styles = StyleSheet.create({
     infoValue: {
         marginTop: 5,
     },
+    button: {
+        backgroundColor: '#0782F9',
+        width: '60%',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 40,
+      },
+      buttonText: {
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 16,
+      },
 });
 export default ProfileScreen;
-
