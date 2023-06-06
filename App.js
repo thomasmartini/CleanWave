@@ -5,10 +5,12 @@ import * as React from 'react';
 import
  MaterialCommunityIcons
 from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import {Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { auth } from '../CleanWave/database/firebase'
+import { useNavigation } from '@react-navigation/core'
 
 import HomeScreen from './pages/HomeScreen';
 import DetailsScreen from './pages/DetailsScreen';
@@ -26,7 +28,6 @@ function HomeStack() {
         initialRouteName="Home"
         screenOptions={{headerShown: false}}
         >
-
           <Stack.Screen
           name="Home"
           component={HomeScreen} />
@@ -54,10 +55,22 @@ function ProfileStack() {
     <Stack.Navigator
       initialRouteName="Profile"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
       <Stack.Screen
         name="Profile"
         component={ProfileScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function LoginStack() {
+  
+  return (
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen} />
     </Stack.Navigator>
   );
 }
@@ -74,14 +87,32 @@ function MapStack() {
   );
 }
 
-function App() {
+function HomeTabs() {
+ 
+  const navigation = useNavigation();
+
+  const handleSignOut = () => {
+      auth
+        .signOut()
+        .then(() => {
+          navigation.navigate('Login')       
+        })
+        .catch(error => alert(error.message))
+    }
   return (
-    <NavigationContainer>
+    
       <Tab.Navigator
         initialRouteName="Feed"
         screenOptions={({ route }) => ({
           headerStyle: { backgroundColor: '#3c85d9' },
           headerTintColor: '#fff',
+          headerRight: () =>  (<Button
+            onPress={handleSignOut}
+            title="Logout"
+            color="#fff"
+          />),
+
+          
           headerTitleStyle: { fontWeight: 'bold' },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
@@ -113,6 +144,7 @@ function App() {
             );
           }
         })}>
+          
 
         <Tab.Screen
           name="HomeStack"
@@ -143,6 +175,21 @@ function App() {
             title: 'Setting'
           }} />
       </Tab.Navigator>
+  )
+}
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator  screenOptions={{
+    headerShown: false
+  }}>
+        <Stack.Screen name="Login" component={LoginStack} />
+        <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen name="Profile" component={HomeTabs} />
+        <Stack.Screen name="Maps" component={HomeTabs} />
+        <Stack.Screen name="Settings" component={HomeTabs} />
+        </Stack.Navigator>
     </NavigationContainer>
   );
 }
