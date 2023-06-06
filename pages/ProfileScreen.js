@@ -4,18 +4,20 @@ import { StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'rea
 import { auth } from '../database/firebase'
 import UploadImage from './uploadImage';
 
+
 const backgroundPicture = require('./Images/backgroundImage.png');
 const ProfileScreen = () => {
     const navigation = useNavigation()
 
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.replace("Login")
-      })
-      .catch(error => alert(error.message))
-  }
+
+//   const handleSignOut = () => {
+//     auth
+//       .signOut()
+//       .then(() => {
+//         navigation.replace("Login")       
+//       })
+//       .catch(error => alert(error.message))
+//   }
     return (
         <ScrollView style={styles.container}>
             <Image
@@ -51,12 +53,14 @@ const ProfileScreen = () => {
                     <Text style={styles.infoLabel}>Daily Challenges:</Text>
                     <Text style={styles.infoValue}>5/5 voltooid</Text>
                 </View>
-                <TouchableOpacity
+                {/* <TouchableOpacity
+
+
                     onPress={handleSignOut}
                     style={styles.button}
                 >
                     <Text style={styles.buttonText}>Sign out</Text>
-                 </TouchableOpacity>
+                 </TouchableOpacity> */}
             </View>
         </ScrollView>
     );
