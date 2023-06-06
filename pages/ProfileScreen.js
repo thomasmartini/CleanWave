@@ -9,6 +9,7 @@ const backgroundPicture = require('./Images/backgroundImage.png');
 const ProfileScreen = () => {
     const navigation = useNavigation()
 
+
 //   const handleSignOut = () => {
 //     auth
 //       .signOut()
@@ -53,6 +54,8 @@ const ProfileScreen = () => {
                     <Text style={styles.infoValue}>5/5 voltooid</Text>
                 </View>
                 {/* <TouchableOpacity
+
+
                     onPress={handleSignOut}
                     style={styles.button}
                 >
@@ -129,4 +132,3 @@ const styles = StyleSheet.create({
       },
 });
 export default ProfileScreen;
-

@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/core'
 
 import HomeScreen from './pages/HomeScreen';
 import DetailsScreen from './pages/DetailsScreen';
+import CollectionScreen from './pages/CollectionScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import MapScreen from './pages/MapScreen';
@@ -21,6 +22,20 @@ import LoginScreen from './pages/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+function CollectionStack() {
+  return (
+      <Stack.Navigator
+        initialRouteName="Collection"
+        screenOptions={{headerShown: false}}
+        >
+
+          <Stack.Screen
+          name="Collection"
+          component={CollectionScreen} />
+      </Stack.Navigator>
+  );
+}
 
 function HomeStack() {
   return (
@@ -118,7 +133,11 @@ function HomeTabs() {
           tabBarInactiveTintColor: 'gray',
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-            if (route.name === 'HomeStack') {
+            if (route.name === 'CollectionStack') {
+              iconName = focused
+                ? 'checkbox-marked-circle'
+                : 'checkbox-marked-circle-outline';
+            }else if(route.name === 'HomeStack') {
               iconName = focused
                 ? 'home-circle'
                 : 'home-circle-outline';
@@ -147,20 +166,27 @@ function HomeTabs() {
           
 
         <Tab.Screen
+          name="CollectionStack"
+          component={CollectionStack}
+          options={{
+            tabBarLabel: 'Collected',
+            title: 'Collected',
+          }}  />
+        <Tab.Screen
           name="HomeStack"
           component={HomeStack}
           options={{
             tabBarLabel: 'Home',
             title: 'Home',
           }}  />
-           <Tab.Screen
+        <Tab.Screen
           name="MapStack"
           component={MapStack}
           options={{
             tabBarLabel: 'Map',
             title: 'Map'
           }} /> 
-          <Tab.Screen
+        <Tab.Screen
           name="ProfileStack"
           component={ProfileStack}
           options={{
