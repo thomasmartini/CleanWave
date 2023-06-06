@@ -101,7 +101,7 @@ const styles = {
     borderColor: '#333',
     borderRadius: 8,
     padding: 8,
-    width: '90%', // Adjust the width as needed
+    width: '90%', 
   },
   icon: {
     marginRight: 16,
