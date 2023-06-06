@@ -17,12 +17,25 @@ const HomeScreen = ({ navigation }) => {
           style={{
             flex: 1,
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
           }}>
           <Text
             style={{
               fontSize: 25,
               textAlign: 'center',
+              marginBottom: 16,
+            
+              
+            }}>
+            Daily Challenges
+          </Text>
+          
+          <TouchableOpacity
+            style={styles.button}
+            onPress={
+              () => navigation.navigate('Details')
+            }>
+            <Text style={{color: '#fff'}}>Havana BeachClub | Plastic fles | 8X</Text>
               marginBottom: 16
             }}>
             You are on Home Screen
@@ -38,6 +51,9 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={
+              () => navigation.navigate('Details')
+            }>
+            <Text style={{color: '#fff'}}>BeachClub Strand | Plastic fles | 4X</Text>
               () => navigation.navigate(
                 'SettingsStack', { screen: 'Settings' }
               )}>
@@ -48,6 +64,7 @@ const HomeScreen = ({ navigation }) => {
             onPress={
               () => navigation.navigate('Details')
             }>
+            <Text style={{color: '#fff'}}>Zuid Zuid West | Plastic fles | 6X</Text>
             <Text>Open Details Screen</Text>
           </TouchableOpacity>
         </View>
@@ -59,10 +76,11 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#147EFB',
     padding: 10,
     width: 300,
     marginTop: 16,
+    borderRadius: 20,
   },
 });
 export default HomeScreen;
