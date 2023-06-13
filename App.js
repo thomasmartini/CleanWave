@@ -139,8 +139,8 @@ function HomeTabs() {
                 : 'checkbox-marked-circle-outline';
             }else if(route.name === 'HomeStack') {
               iconName = focused
-                ? 'home-circle'
-                : 'home-circle-outline';
+                ? 'calendar-check-outline'
+                : 'calendar';
             }else if(route.name === 'MapStack') {
               iconName = focused
                 ? 'map-marker'
@@ -176,7 +176,7 @@ function HomeTabs() {
           name="HomeStack"
           component={HomeStack}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Daily',
             title: 'Home',
           }}  />
         <Tab.Screen
