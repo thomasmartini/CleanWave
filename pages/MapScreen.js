@@ -45,7 +45,7 @@ import {
 
 const MapScreen = () => {
     return (
-   <View style={styles.container}>
+   <View >
      <MapView
        style={styles.map}
        region={{
@@ -61,29 +61,21 @@ const MapScreen = () => {
       <Marker coordinate={Villa} />
       <Marker coordinate={TwoSeaons} />
      </MapView>
-
-     <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: -125
-            }}>
-            You are on Map Screen
-          </Text>
+       
    </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-      ...StyleSheet.absoluteFillObject,
       height: 400,
       width: 400,
       justifyContent: 'flex-end',
       alignItems: 'center',
     },
     map: {
-      ...StyleSheet.absoluteFillObject,
+      width: '100%',
+      height: "100%"
     },
    });
    
