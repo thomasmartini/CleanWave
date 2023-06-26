@@ -6,11 +6,15 @@ import
  MaterialCommunityIcons
 from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { auth } from '../CleanWave/database/firebase'
 import { useNavigation } from '@react-navigation/core'
+import { EventRegister } from 'react-native-event-listeners';
+import { useState , useEffect} from 'react';
+import theme from './config/Theme';
+import themeContext from './config/ThemeContext';
 
 import HomeScreen from './pages/HomeScreen';
 import DetailsScreen from './pages/DetailsScreen';
@@ -19,6 +23,7 @@ import ProfileScreen from './pages/ProfileScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import MapScreen from './pages/MapScreen';
 import LoginScreen from './pages/LoginScreen';
+import RegisterScreen from './pages/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,6 +91,11 @@ function LoginStack() {
       <Stack.Screen
         name="Login"
         component={LoginScreen} />
+      <Stack.Screen
+        name = "Register"
+        component={RegisterScreen}
+      />
+
     </Stack.Navigator>
   );
 }
@@ -119,7 +129,7 @@ function HomeTabs() {
       <Tab.Navigator
         initialRouteName="Feed"
         screenOptions={({ route }) => ({
-          headerStyle: { backgroundColor: '#3c85d9' },
+          headerStyle: {backgroundColor: '#3c85d9'},
           headerTintColor: '#fff',
           headerRight: () =>  (<Button
             onPress={handleSignOut}
@@ -177,7 +187,7 @@ function HomeTabs() {
           component={HomeStack}
           options={{
             tabBarLabel: 'Daily',
-            title: 'Home',
+            title: 'Daily Challenges',
           }}  />
         <Tab.Screen
           name="MapStack"
@@ -205,18 +215,31 @@ function HomeTabs() {
 }
 
 function App() {
+  const [mode, setMode] = useState('false');
+
+  useEffect(()=> {
+    let eventListener = EventRegister.addEventListener("changeTheme", (data)=>{
+      setMode(data)
+    })
+
+    return () => {
+      EventRegister.removeEventListener(eventListener); 
+    }
+  })
   return (
-    <NavigationContainer>
+    <themeContext.Provider value={mode === false ? theme.dark : theme.light}>
+    <NavigationContainer theme ={mode === false? DarkTheme : DefaultTheme}>
       <Stack.Navigator  screenOptions={{
     headerShown: false
   }}>
         <Stack.Screen name="Login" component={LoginStack} />
-        <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen name="Daily Challenges" component={HomeTabs} />
         <Stack.Screen name="Profile" component={HomeTabs} />
         <Stack.Screen name="Maps" component={HomeTabs} />
         <Stack.Screen name="Settings" component={HomeTabs} />
         </Stack.Navigator>
     </NavigationContainer>
+    </themeContext.Provider>
   );
 }
 export default App;
