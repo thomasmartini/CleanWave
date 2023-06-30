@@ -8,10 +8,14 @@ import {
   Text,
   SafeAreaView
 } from 'react-native';
+import { useContext } from 'react';
+import themeContext from '../config/ThemeContext';
+
 
 const HomeScreen = ({ navigation }) => {
+  const theme = useContext(themeContext)
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={[{ flex: 1, backgroundColor:"white" }, {backgroundColor: theme.background}]}>
       <View style={{ flex: 1, padding: 16 }}>
         <View
           style={{
@@ -21,32 +25,32 @@ const HomeScreen = ({ navigation }) => {
 
           }}>
           <Text
-            style={{
+            style={[{
               fontSize: 25,
               textAlign: 'center',
               marginBottom: 16,
 
 
-            }}>
+            }, {color: theme.color}]}>
             Daily Challenges
           </Text>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {backgroundColor:theme.button}]}
             onPress={
               () => navigation.navigate('Details')
             }>
-            <Text style={{color: '#fff'}}>Havana BeachClub | Plastic fles | 8X</Text>
+            <Text style={{color: 'white'}}>Havana BeachClub | Plastic fles | 8X</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {backgroundColor:theme.button}]}
             onPress={
               () => navigation.navigate('Details')
             }>
             <Text style={{color: '#fff'}}>BeachClub Strand | Plastic fles | 4X</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {backgroundColor:theme.button}]}
             onPress={
               () => navigation.navigate('Details')
             }>
